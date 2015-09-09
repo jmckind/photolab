@@ -1,2 +1,12 @@
+# Ansible Artifacts
+*.log
+
+# Django Artifacts
 *.pyc
 *.sqlite3
+local_settings.py
+photolab/media
+photolab/static
+
+# Vagrant Artifacts
+.vagrant
