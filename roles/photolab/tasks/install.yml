@@ -23,4 +23,7 @@
   template: src=local_settings.py.j2 dest={{ photolab_app_dir }}/photolab/local_settings.py
 
 - name: ensure the application state directory is present
-  file: path={{ photolab_state_dir }} state=directory owner={{ photolab_user }} group={{ photolab_user }} mode=0775
+  file: path={{ photolab_state_dir }} state=directory owner={{ photolab_user }} group={{ photolab_proxy_group }} mode=0775
+
+- name: ensure the application log directory is present
+  file: path={{ photolab_log_dir }} state=directory owner={{ photolab_user }} group={{ photolab_proxy_group }} mode=0775

@@ -1,4 +1,4 @@
-# Flightdeck upstart script
+# PhotoLab upstart script
 
 description "{{ photolab_name }}"
 start on runlevel [2345]
@@ -13,4 +13,4 @@ respawn limit 10 9
 
 expect fork
 
-exec uwsgi --master --enable-threads --die-on-term --emperor /etc/uwsgi &>{{ photolab_log_dir }}/{{ photolab_log_filename }}
+exec uwsgi --master --enable-threads --die-on-term --emperor /etc/uwsgi

@@ -3,7 +3,7 @@
 #
 
 upstream django {
-    server unix://{{ photolab_state_dir }}/{{ photolab_name }}.sock;
+    server unix://{{ photolab_proxy_socket }};
 }
 
 server {

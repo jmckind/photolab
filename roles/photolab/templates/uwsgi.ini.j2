@@ -14,7 +14,7 @@ module = {{ photolab_name }}.wsgi
 # setuid to the specified user/uid
 uid = {{ photolab_user }}
 
-setgid to the specified group/gid
+# setgid to the specified group/gid
 gid = {{ photolab_proxy_group }}
 
 # the virtualenv (full path)
@@ -25,13 +25,24 @@ home = {{ photolab_virtualenv }}
 master = true
 
 # maximum number of worker processes
-processes = 10
+processes = 1
+
+# maximum number of threads per process
+threads = 3
 
 # the socket (use the full path to be safe
-socket = {{ photolab_proxy_root }}/{{ photolab_name }}.sock
+socket = {{ photolab_proxy_socket }}
 
 # clear environment on exit
 vacuum = true
 
 # Socket permissions
 chmod-socket = 664
+
+# Statistics reporting
+stats = {{ photolab_proxy_host }}:{{ photolab_proxy_stats_port }}
+
+# Logging
+logto = {{ photolab_log_dir }}/uwsgi.log
+
+logfile-chown = true
