@@ -1,0 +1,37 @@
+#
+# {{ ansible_managed }}
+#
+
+[uwsgi]
+
+# Django-related settings
+# the base directory (full path)
+chdir = {{ photolab_app_dir }}
+
+# Django's wsgi file
+module = {{ photolab_name }}.wsgi
+
+# setuid to the specified user/uid
+uid = {{ photolab_user }}
+
+setgid to the specified group/gid
+gid = {{ photolab_proxy_group }}
+
+# the virtualenv (full path)
+home = {{ photolab_virtualenv }}
+
+# process-related settings
+# master
+master = true
+
+# maximum number of worker processes
+processes = 10
+
+# the socket (use the full path to be safe
+socket = {{ photolab_proxy_root }}/{{ photolab_name }}.sock
+
+# clear environment on exit
+vacuum = true
+
+# Socket permissions
+chmod-socket = 664

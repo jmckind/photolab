@@ -1,0 +1,10 @@
+---
+
+- include: user.yml
+  tags: [photolab-user]
+
+- include: install.yml
+  tags: [photolab-install]
+
+- include: proxy.yml
+  tags: [photolab-proxy]

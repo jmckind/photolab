@@ -1,0 +1,30 @@
+#
+# {{ ansible_managed }}
+#
+
+upstream django {
+    server unix://{{ photolab_state_dir }}/{{ photolab_name }}.sock;
+}
+
+server {
+    listen      {{ photolab_proxy_port }};
+    server_name {{ photolab_proxy_host }};
+    charset     utf-8;
+
+    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+        return 444;
+    }
+
+    location /media  {
+        alias {{ photolab_state_dir }}/media;
+    }
+
+    location /static {
+        alias {{ photolab_state_dir }}/static;
+    }
+
+    location / {
+        uwsgi_pass  django;
+        include     /etc/nginx/uwsgi_params;
+    }
+}

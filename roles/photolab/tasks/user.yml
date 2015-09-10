@@ -1,0 +1,7 @@
+---
+
+- name: ensure the application user is present
+  user: name={{ photolab_user }} home={{ photolab_root_dir }} shell={{ photolab_user_shell }} comment="{{ photolab_user_comment }}" append=yes groups="{{ photolab_proxy_group }}" generate_ssh_key=yes
+
+- name: ensure the bashrc file is present
+  copy: src=bashrc dest={{ photolab_root_dir }}/.bashrc owner={{ photolab_user }} group={{ photolab_user }} mode=0700

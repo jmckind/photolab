@@ -50,7 +50,23 @@
     </nav>
 
     <div class="container">
-        {% block content %}{% endblock %}
+        <h1><i class="fa fa-picture-o"></i> PhotoLab</h1>
+
+        <div class="row">
+            {% if photos|length <= 0  %}
+            <div class="alert alert-info" role="alert">
+                <i class="fa fa-info-circle"></i> Nothing to see here, how about you <a href="#" data-toggle="modal" data-target="#upload-dialog">upload</a> a new photo?
+            </div>
+            {% endif %}
+
+            {% for photo in photos %}
+            <div class="col-xs-3 col-md-2">
+                <a href="{{ photo }}" target="_blank" class="thumbnail" title="View Original">
+                    <img src="{{ photo }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="modal fade" id="upload-dialog">
@@ -66,7 +82,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="file-upload">File input</label>
-                            <input type="file" id="file-upload" name="file">
+                            <input type="file" id="file-upload" name="photo">
                             <p class="help-block">PNG or JPG</p>
                         </div>
                     </div>

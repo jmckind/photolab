@@ -1,5 +1,0 @@
----
-
-system_user: photolab
-authorized_keys:
-  - ~/.ssh/id_rsa.pub

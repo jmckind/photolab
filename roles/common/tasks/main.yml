@@ -1,0 +1,17 @@
+---
+
+- name: Dump the ansible environment
+  connection: local
+  local_action: template src=environment.log.j2 dest={{ playbook_dir }}/environment.log
+  sudo: no
+
+- name: ensure common packages are present
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - curl
+    - htop
+    - iftop
+    - manpages
+    - openssl
+    - vim
+    - wget

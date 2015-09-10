@@ -1,0 +1,30 @@
+---
+
+- name: ensure the application artifacts are generated
+  django_manage: command=collectstatic app_path={{ photolab_app_dir }} virtualenv={{ photolab_virtualenv }}
+
+- name: ensure the application media directory is present
+  file: path={{ photolab_state_dir }}/media state=directory
+
+- name: ensure the application state directory is owned by the application user
+  file: path={{ photolab_state_dir }} state=directory recurse=yes owner={{ photolab_user }} group={{ photolab_proxy_group }} mode=0775
+
+- name: ensure the nginx site configuration is present
+  template: src=nginx.conf.j2 dest=/etc/nginx/sites-available/{{ photolab_name }} mode=0644
+
+- name: ensure the nginx site is enabled
+  file: src=/etc/nginx/sites-available/{{ photolab_name }} dest=/etc/nginx/sites-enabled/default state=link
+  notify: reload nginx
+
+- name: ensure the uwsgi vassals directory is present
+  file: path=/etc/uwsgi state=directory mode=0755
+
+- name: ensure the uwsgi configuration file is present
+  template: src=uwsgi.ini.j2 dest=/etc/uwsgi/{{ photolab_name }}.ini mode=0644
+  notify: reload nginx
+
+- name: ensure the init script is present
+  template: src=photolab.conf.j2 dest=/etc/init/{{ photolab_name }}.conf mode=0755
+
+- name: ensure the application is started and enabled at boot
+  service: name={{ photolab_name }} state=started enabled=yes

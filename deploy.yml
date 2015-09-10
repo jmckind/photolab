@@ -1,0 +1,8 @@
+---
+
+- name: Deploy photolab application
+  hosts: all
+  gather_facts: no
+  sudo: yes
+  roles:
+    - photolab

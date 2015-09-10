@@ -1,0 +1,8 @@
+"""
+Override settings for photolab project.
+
+{{ ansible_managed }}
+"""
+
+STATIC_ROOT = '{{ photolab_state_dir }}/static'
+MEDIA_ROOT = '{{ photolab_state_dir }}/media'

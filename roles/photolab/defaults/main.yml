@@ -1,0 +1,18 @@
+---
+
+photolab_name: photolab
+photolab_repo: https://github.com/jmckind/photolab.git
+photolab_version: master
+photolab_root_dir: /opt/{{ photolab_name }}
+photolab_app_dir: "{{ photolab_root_dir }}/{{ photolab_name }}"
+photolab_state_dir: /var/lib/{{ photolab_name }}
+photolab_virtualenv: "{{ photolab_app_dir }}/.venv"
+photolab_log_dir: /var/log/{{ photolab_name }}
+photolab_log_filename: application.log
+photolab_user: photolab
+photolab_user_shell: /bin/bash
+photolab_user_comment: "PhotoLab Application User"
+
+photolab_proxy_host: localhost
+photolab_proxy_port: 80
+photolab_proxy_group: www-data
