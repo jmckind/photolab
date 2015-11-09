@@ -7,15 +7,14 @@ A simple photo gallery application.
 Check out the source code to a directory on your local machine. We will refer to this location as the `<PROJECT_DIR>`.
 
     $ git clone https://github.com/jmckind/photolab.git
+    $ cd <PROJECT_DIR>
 
-Setup the virtual environment and dependencies.
+A `Makefile` has been provided in the `<PROJECT_DIR>` to setup the development environment.
 
-    $ cd <PROJECT_DIR>/photolab
-    $ mkvirtualenv photolab
-    $ pip install -r requirements.txt
+    $ make setup
 
-Once the dependencies have been installed, start the development server and get to work.
+Next, run the development server and get to work!
 
-    $ ./manage.py runserver 0.0.0.0:8080
+    $ make run
 
 This will start the development server on the local machine, listening on port 8080. You should be able to access the application at [http://localhost:8080/](http://localhost:8080).
